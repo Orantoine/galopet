@@ -1,28 +1,24 @@
 package com.orantoine.galopet.dto;
 
-
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+import java.util.List;
 
 @Data
-@Document(collection = "player")
-public class Player {
-
+@Document(collection = "day")
+public class Day {
 
     @Id
     private String id;
 
+    @Indexed(unique = true)
+    private Date day;
 
-    private String pseudo;
+    private List<Player> playerEngaged;
 
-    private String firstname;
-
-    private String lastname;
-
-    private Integer level;
-
-
+    private List<Session> sessionList;
 }

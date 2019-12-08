@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -22,4 +23,14 @@ public class PlayerService {
     public Player addPlayer(Player player){
         return playerRepository.save(player);
     }
+
+    public void deletePlayer(String id){
+        playerRepository.deleteById(id);
+    }
+
+    public Player findById(String id){
+        Optional<Player> playerOptional = playerRepository.findById(id);
+        return playerOptional.orElse(null);
+    }
+
 }

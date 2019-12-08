@@ -1,7 +1,7 @@
 package com.orantoine.galopet.repositories;
 
-import com.orantoine.galopet.dto.Player;
+import com.orantoine.galopet.dto.Day;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface PlayerRepository extends MongoRepository<Player,String> {
+public interface DayRepository extends MongoRepository<Day,String> {
 }
