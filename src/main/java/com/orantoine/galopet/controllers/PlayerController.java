@@ -3,6 +3,7 @@ package com.orantoine.galopet.controllers;
 
 import com.orantoine.galopet.dto.Player;
 import com.orantoine.galopet.services.PlayerService;
+import io.micrometer.core.annotation.Timed;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -29,6 +30,7 @@ public class PlayerController {
         return ResponseEntity.ok(playerList);
     }
 
+    @Timed(value = "Player_Creation_Time")
     @PostMapping(path = "/player")
     public ResponseEntity<Player> addPlayer(@RequestBody Player player){
         Player newPlayer = playerService.addPlayer(player);

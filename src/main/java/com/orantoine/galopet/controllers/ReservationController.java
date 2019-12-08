@@ -7,12 +7,11 @@ import com.orantoine.galopet.dto.Session;
 import com.orantoine.galopet.services.DayService;
 import com.orantoine.galopet.services.PlayerService;
 import com.orantoine.galopet.services.SessionService;
+import io.micrometer.core.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -32,6 +31,7 @@ public class ReservationController {
         return ResponseEntity.ok(dayService.getAll());
     }
 
+    @Timed(value = "Reservation_Creation_Time")
     @PostMapping(path = "/reservations")
     public ResponseEntity<List<Day>> newDays(@RequestBody List<Day> days){
         return ResponseEntity.status(HttpStatus.CREATED).body(dayService.saveAll(days));
